@@ -7,6 +7,21 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 let mongoose = require('mongoose');
 
+
+//Database setup 
+let dbURI = require('./db.js');
+
+//Connect to database
+mongoose.connect(dbURI.URI);
+
+let mongoDB = mongoose.connection;
+
+mongoDB.on('error', console.error.bind('Connection Error:'));
+mongoDB.once('open', () => {
+  console.log('Connected to MongoDB');
+});
+
+
 //Local Modules
 let indexRouter = require('../routes/index');
 let contactRouter = require('../routes/contact');
