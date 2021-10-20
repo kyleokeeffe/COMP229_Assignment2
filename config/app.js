@@ -1,21 +1,22 @@
 //Declaring imports
 //External Modules
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
+let mongoose = require('mongoose');
 
 //Local Modules
-var indexRouter = require('./routes/index');
-var contactRouter = require('./routes/contact');
+let indexRouter = require('../routes/index');
+let contactRouter = require('../routes/contact');
 
 //Instantiating the Express module
-var app = express();
+let app = express();
 
 //Configuring Express
 //set path for views 
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '../views'));
 //set ejs as the view engine
 app.set('view engine', 'ejs');
 
@@ -26,8 +27,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 //Setting static folders
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'node_modules')));
+app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../node_modules')));
 
 //Setting HTTP request handlers
 app.use('/', indexRouter);

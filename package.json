@@ -1,5 +1,5 @@
 {
-  "name": "comp229-007-okeeffekyle-assignment01",
+  "name": "comp229-okeeffekyle-assignment2",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -19,14 +19,15 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jquery": "^3.6.0",
+    "mongoose": "^6.0.11",
     "morgan": "~1.9.1"
   },
-  "description": "COMP229-007 Assignment 1",
-  "main": "app.js",
+  "description": "COMP229-007 Assignment 2",
+  "main": "./config/app.js",
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kyleokeeffe/COMP229-007_OKeeffeKyle_Assignment01.git"
+    "url": "git+https://github.com/kyleokeeffe/COMP229-007_OKeeffeKyle_Assignment2.git"
   },
   "keywords": [
     "COMP229",
@@ -42,7 +43,7 @@
   "author": "Kyle O'Keeffe",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kyleokeeffe/COMP229-007_OKeeffeKyle_Assignment01/issues"
+    "url": "https://github.com/kyleokeeffe/COMP229-007_OKeeffeKyle_Assignment2/issues"
   },
-  "homepage": "https://github.com/kyleokeeffe/COMP229-007_OKeeffeKyle_Assignment01#readme"
+  "homepage": "https://github.com/kyleokeeffe/COMP229-007_OKeeffeKyle_Assignment2#readme"
 }
