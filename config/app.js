@@ -71,9 +71,19 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+//Passport contact configuration 
+
+//Create contact model instance
+let userModel = require('../models/user.js');
+let User = userModel.User;
+
 //Setting HTTP request handlers
 app.use('/', indexRouter);
 app.use('/contact', contactRouter);
+
+//serialize and deserical the user info 
+passport.serializeUser(User.serializeUser);
+passport.deserializeUser(User.deserializeUser);
 
 //Predefined callback function in case of error 
 app.use(function(req, res, next) {
