@@ -1,0 +1,44 @@
+  <!-- 
+    Filename:     contact.ejs 
+    Student name: Kyle O'Keeffe
+    StudentID:    301156790
+    Date:         Oct. 2, 2021 
+  -->
+
+<% include partials/header.ejs %>
+
+<h1><%= title %></h1>
+<div class="m-4 container">
+<!-- Contact information -->
+    <div class="row">
+        <p>Kyle O'Keeffe<br>
+        (647)462-4781<br>
+        kokeeffe@my.centennialcollege.ca</p>
+    </div>
+<!-- Contact form -->
+    <div class="w-60 row">
+        <div class="card">
+            <!-- return to index.js when submitted -->
+            <form action="/">
+                <div class="form-group">
+                    <label for="email">Name:</label>
+                    <input type="input" class="form-control" id="name" placeholder="Enter Name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Phone:</label>
+                    <input type="tel" class="form-control" id="telephone" placeholder="Enter Phone Number" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="comment">Message:</label>
+                    <textarea class="form-control" rows="5" id="message"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div> 
+    </div>
+</div>
+<% include partials/footer.ejs %>

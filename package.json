@@ -1,0 +1,48 @@
+{
+  "name": "comp229-007-okeeffekyle-assignment01",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./server"
+  },
+  "engines": {
+    "node": "^14.17.5",
+    "npm": "^6.00.00"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@popperjs/core": "^2.10.2",
+    "bootstrap": "^5.1.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jquery": "^3.6.0",
+    "morgan": "~1.9.1"
+  },
+  "description": "COMP229-007 Assignment 1",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyleokeeffe/COMP229-007_OKeeffeKyle_Assignment01.git"
+  },
+  "keywords": [
+    "COMP229",
+    "express",
+    "nodejs",
+    "javascript",
+    "bootstrap",
+    "ejs",
+    "partials",
+    "section",
+    "007"
+  ],
+  "author": "Kyle O'Keeffe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kyleokeeffe/COMP229-007_OKeeffeKyle_Assignment01/issues"
+  },
+  "homepage": "https://github.com/kyleokeeffe/COMP229-007_OKeeffeKyle_Assignment01#readme"
+}
