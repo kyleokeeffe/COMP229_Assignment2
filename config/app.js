@@ -7,6 +7,14 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 let mongoose = require('mongoose');
 
+//modules for authentication 
+let session=require('express-session');
+let passport=require('passport');
+let passportLocal = require('passport-local');
+let localStrategy = passportLocal.Strategy;
+let flash = require('connect-flash');
+
+
 
 //Database setup 
 let dbURI = require('./db.js');
@@ -35,6 +43,8 @@ app.set('views', path.join(__dirname, '../views'));
 //set ejs as the view engine
 app.set('view engine', 'ejs');
 
+
+
 //Creating middleware
 app.use(logger('dev'));
 app.use(express.json());
@@ -44,6 +54,22 @@ app.use(cookieParser());
 //Setting static folders
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.static(path.join(__dirname, '../node_modules')));
+
+
+//set up express session
+app.use(session({
+  secret: 'SomeSecret',
+  saveUninitialized: false,
+  resave: false
+}));
+
+
+//Initialize flash
+app.use(flash());
+
+//Initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Setting HTTP request handlers
 app.use('/', indexRouter);
