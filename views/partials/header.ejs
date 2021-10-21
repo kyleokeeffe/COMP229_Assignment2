@@ -14,6 +14,7 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+ 
     <link rel="stylesheet" href="/@fortawesome/fontawesome-free/css/all.min.css">
   </head>
   <body>
@@ -54,6 +55,17 @@
             <a class="nav-link" href="/contact">Contact</a>
             <% } %>
             </li>
-        </ul>
+            <li class="nav-item">
+              <% if(title == 'Business Contacts'){ %>
+                  <a class="nav-link" href="/contact">Contact</a>
+              <% } else{ %> 
+              <a class="nav-link" href="/businessContacts">Business Contacts</a>
+              <% } %>
+              </li>
+        <li class="nav-item btn">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+      </ul>
+        
     </nav>
 <main class="m-2">

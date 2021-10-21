@@ -33,6 +33,8 @@ mongoDB.once('open', () => {
 //Local Modules
 let indexRouter = require('../routes/index');
 let contactRouter = require('../routes/contact');
+let businessContactsRouter = require('../routes/businessContacts');
+let loginRouter = require('../routes/login');
 
 //Instantiating the Express module
 let app = express();
@@ -84,6 +86,8 @@ passport.deserializeUser(User.deserializeUser);
 //Setting HTTP request handlers
 app.use('/', indexRouter);
 app.use('/contact', contactRouter);
+app.use('/businessContacts', businessContactsRouter);
+app.use('/login', loginRouter);
 
 
 
