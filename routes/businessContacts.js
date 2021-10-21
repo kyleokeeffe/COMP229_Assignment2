@@ -29,14 +29,22 @@ router.get('/list', businessContactsController.list);
 //     }
 //   }
 // )});
+ 
 
 
 /* GET Business contacts edit page. */
-router.get('/edit', function(req, res, next) {
-  res.render('businessContacts/add_edit', { title: 'Edit Contact' });
-});
+router.get('/edit/:id', businessContactsController.displayEdit);
+
+/* POST Business contacts edit page. */
+router.post('/edit/:id', businessContactsController.processEdit);
+
 
 /* GET Business contacts add page. */
-router.get('/add', businessContactsController.add);
+router.get('/add', businessContactsController.displayAdd);
+
+/* POST Business contacts add page. */
+router.post('/add', businessContactsController.processAdd);
+
+
 
 module.exports = router;
