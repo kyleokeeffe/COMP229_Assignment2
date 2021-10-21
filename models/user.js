@@ -21,11 +21,11 @@ let mongoose = require('mongoose');
              default:'',
              required: 'Email is requried'
          },
-         displayName:{
-             type: String,
-             default:'',
-             required: 'Display Name is requried'
-         },
+        //  displayName:{
+        //      type: String,
+        //      default:'',
+        //      required: 'Display Name is requried'
+        //  },
          created:{
              type: Date,
              default: Date.now         },

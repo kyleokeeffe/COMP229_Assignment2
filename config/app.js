@@ -86,8 +86,9 @@ passport.deserializeUser(User.deserializeUser);
 //Setting HTTP request handlers
 app.use('/', indexRouter);
 app.use('/contact', contactRouter);
-app.use('/businessContacts', businessContactsRouter);
 app.use('/login', loginRouter);
+app.use('/businessContacts', businessContactsRouter);
+
 
 
 
