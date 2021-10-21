@@ -1,5 +1,5 @@
 
-if(getTitle == "Business Contacts"){
+if(getTitle == "Business Contacts" || getTitle == "Edit Business Contact"){
     let deleteButtons = document.querySelectorAll('.btn-danger');
 
     for(button of deleteButtons){
@@ -10,3 +10,4 @@ if(getTitle == "Business Contacts"){
         });
     }
 }
+document.getElementById("deleteButtonContainer").classList()[0]="d-block";

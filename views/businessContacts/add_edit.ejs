@@ -48,7 +48,11 @@
                 
 
                 <button class="btn btn-dark" type="submit"> <i class="fas fa-edit"></i>Submit</button>
-                <a href ="/businessContacts/list" class="btn btn-warning"> <i class="fas fa-undo"></i>Cancel</a>
+                <a class="btn btn-warning" href ="/businessContacts/list" > <i class="fas fa-undo"></i>Cancel</a>
+                <a class="btn btn-danger btn-sm <% if(title == 'Edit Business Contact'){ %>d-inline<% }else{ %>d-none<% } %>" href="/businessContacts/delete/<%= BusinessContact._id %>">Delete<i class= "fas fa-pencil-alt"></i></a></td>
+
+
+                
             </form>
         </div>
     </div>

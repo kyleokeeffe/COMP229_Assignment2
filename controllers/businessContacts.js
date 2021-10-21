@@ -42,7 +42,7 @@ module.exports.displayEdit = function(req,res,next){
             res.end(err);
         }else{
             res.render('businessContacts/add_edit', {
-                title: "Add Item",
+                title: "Edit Business Contact",
                 BusinessContact: businessContactToEdit
             })
         }
