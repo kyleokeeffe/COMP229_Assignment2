@@ -27,7 +27,8 @@
                         <td><%= BusinessContactsList[i].name %></td>
                         <td><%= BusinessContactsList[i].telephone %></td>
                         <td><%= BusinessContactsList[i].email %></td>
-                        <td><button><a href="/businessContacts/edit/<%= BusinessContactsList[i]._id %>">Edit</a></button></td>
+                        <td><a class="btn btn-primary btn-sm" href="/businessContacts/edit/<%= BusinessContactsList[i]._id %>">Edit<i class= "fas fa-pencil-alt"></i></a></td>
+                        <td><a class="btn btn-danger btn-sm" href="/businessContacts/delete/<%= BusinessContactsList[i]._id %>">Delete<i class= "fas fa-pencil-alt"></i></a></td>
                        </tr> 
                    <% } %>
                 </table>

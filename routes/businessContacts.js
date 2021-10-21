@@ -45,6 +45,7 @@ router.get('/add', businessContactsController.displayAdd);
 /* POST Business contacts add page. */
 router.post('/add', businessContactsController.processAdd);
 
-
+/* GET Business contacts add page. */
+router.get('/delete/:id', businessContactsController.performDelete);
 
 module.exports = router;
