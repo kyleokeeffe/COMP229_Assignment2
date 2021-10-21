@@ -7,6 +7,7 @@ var express = require('express');
 var router = express.Router();
 // Controller access
 let businessContactsController = require('../controllers/businessContacts');
+const { startSession } = require('../models/businessContacts');
 
 
 
@@ -30,9 +31,12 @@ router.get('/list', businessContactsController.list);
 // )});
 
 
+/* GET Business contacts edit page. */
 router.get('/edit', function(req, res, next) {
   res.render('businessContacts/add_edit', { title: 'Edit Contact' });
 });
 
+/* GET Business contacts add page. */
+router.get('/add', businessContactsController.add);
 
 module.exports = router;
