@@ -1,0 +1,30 @@
+
+    <%- include ../partials/header.ejs %>
+
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+    <main class="container">
+        <div class="row">
+            <div class="table-responsive">
+                <h1><%= title %></h1>
+                <br>
+                <a href="/inventory/add" class="btn btn-dark">add item</a>
+                <form action="post">
+                    <label for="nameInputField">Name</label>
+                    <input type="text" id="nameInputField" placeholder="Please enter Name">
+
+
+                    <input type="submit" value="submit">
+
+                </form>
+
+            </div>
+        </div>
+    </main>
+
+
+    
+
+    <% include ../partials/footer.ejs %>
+   

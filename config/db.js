@@ -1,3 +1,3 @@
-//dDfine database location 
+//define database location 
 
 module.exports ={ "URI" : "mongodb://localhost/Assignment2"}

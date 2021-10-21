@@ -5,25 +5,34 @@
 
 var express = require('express');
 var router = express.Router();
+// Controller access
+let businessContactsController = require('../controllers/businessContacts');
 
-//Connect Model
-let BusinessContacts = require('../models/businessContacts');
 
-BusinessContacts.find(
-  (err, businessContactsList)=>{
-    if(err){
-      return console.error(err);
-    }else{
-      console.log(businessContactsList);
-      
-    }
-  }
-);
+
+
+
 
 
 /* GET Business contacts page. */
-router.get('/', function(req, res, next) {
-  res.render('businessContacts', { title: 'Business Contacts' });
+router.get('/list', businessContactsController.list);
+// router.get('/list', function(req,res,next){BusinessContacts.find(
+//   (err, businessContactsList)=>{
+//     if(err){
+//       return console.error(err);
+//     }else{
+//       console.log(businessContactsList);
+//         // res.render('businessContacts/list', { title: 'Business Contacts',
+//         // BusinessContactsList: businessContactsList });
+      
+//     }
+//   }
+// )});
+
+
+router.get('/edit', function(req, res, next) {
+  res.render('businessContacts/add_edit', { title: 'Edit Contact' });
 });
+
 
 module.exports = router;

@@ -1,0 +1,42 @@
+
+
+    <%- include ../partials/header.ejs %>
+
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+    <main class="container">
+        <div class="row">
+            <div class="table-responsive">
+                <h1><%= title %></h1>
+                <br>
+                
+                <table class="table table-bordered table-striped table-hover">
+                    <!-- Header row -->
+                    <tr>
+                        <th class = "text-center">Name</th>
+                        <th class = "text-center">Telephone</th>
+                        <th class = "text-center">Email</th>
+                        <th class = "text-center" colspan="2">Actions</th>
+                    </tr>
+    
+                    <!-- Repeatable template row -->
+                   
+                    <% for(let i = 0; i<BusinessContactsList.length; i++){ %>
+                       <tr>
+                        <td><%= BusinessContactsList[i].name %></td>
+                        <td><%= BusinessContactsList[i].telephone %></td>
+                        <td><%= BusinessContactsList[i].email %></td>
+                        <td><button><a href="/businessContacts/edit/<%= BusinessContactsList[i]._id %>">Edit</a></button></td>
+                       </tr> 
+                   <% } %>
+                </table>
+            </div>
+        </div>
+    </main>
+
+
+    
+
+    <% include ../partials/footer.ejs %>
+   
