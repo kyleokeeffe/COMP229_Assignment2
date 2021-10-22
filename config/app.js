@@ -6,21 +6,25 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 let mongoose = require('mongoose');
+let cors = require('cors');
 
 //modules for authentication 
 let session=require('express-session');
 let passport=require('passport');
+
 let passportLocal = require('passport-local');
 let localStrategy = passportLocal.Strategy;
 let flash = require('connect-flash');
 
-
+let passportJWT = require('passport-jwt');
+let JWTStrategy = passportJWT.Strategy;
+let ExtractJWT = passportJWT.ExtractJwt;
 
 //Database setup 
-let dbURI = require('./db.js');
+let DB = require('./db');
 
 //Connect to database
-mongoose.connect(dbURI.URI);
+mongoose.connect(DB.URI);
 
 let mongoDB = mongoose.connection;
 
@@ -34,7 +38,7 @@ mongoDB.once('open', () => {
 let indexRouter = require('../routes/index');
 let contactRouter = require('../routes/contact');
 let businessContactsRouter = require('../routes/businessContacts');
-let loginRouter = require('../routes/login');
+// let loginRouter = require('../routes/login');
 
 //Instantiating the Express module
 let app = express();
@@ -79,14 +83,34 @@ app.use(passport.session());
 let userModel = require('../models/user.js');
 let User = userModel.User;
 
+// implement a User Authentication Strategy
+passport.use(User.createStrategy());
+
 //serialize and deserical the user info 
 passport.serializeUser(User.serializeUser);
 passport.deserializeUser(User.deserializeUser);
 
+// verify that the token sent by the user - check if valid
+let jwtOptions = {};
+jwtOptions.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
+jwtOptions.secretOrKey = DB.Secret;
+
+let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done) => {
+  User.findById(jwt_payload.id)
+  .then(user => {
+    return done(null, user);
+  }).catch(err => {
+    return done(err, false);
+  });
+});
+
+
+passport.use(strategy);
+
 //Setting HTTP request handlers
 app.use('/', indexRouter);
 app.use('/contact', contactRouter);
-app.use('/login', loginRouter);
+// app.use('/login', loginRouter);
 app.use('/businessContacts', businessContactsRouter);
 
 

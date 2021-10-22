@@ -1,3 +1,5 @@
 //define database location 
 
-module.exports ={ "URI" : "mongodb://localhost/Assignment2"}
+module.exports ={
+    "URI" : "mongodb://localhost/Assignment2",
+    "Secret": 'SomeSecret'}

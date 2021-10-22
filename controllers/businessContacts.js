@@ -1,7 +1,9 @@
 // Connect the model
 const businessContacts = require('../models/businessContacts');
 let BusinessContacts = require('../models/businessContacts');
+let mongoose = require('mongoose');
 
+let jwt = require('jsonwebtoken');
 
 module.exports.list = function(req, res, next) {
     BusinessContacts.find(
@@ -11,7 +13,8 @@ module.exports.list = function(req, res, next) {
           }else{
             // console.log("got it");
               res.render('businessContacts/list', { title: 'Business Contacts',
-              BusinessContactsList: businessContactsList });
+              BusinessContactsList: businessContactsList, 
+              username: req.user ? req.user.username : ''});
             
           }
         }
@@ -43,7 +46,8 @@ module.exports.displayEdit = function(req,res,next){
         }else{
             res.render('businessContacts/add_edit', {
                 title: "Edit Business Contact",
-                BusinessContact: businessContactToEdit
+                BusinessContact: businessContactToEdit, 
+                username: req.user ? req.user.username : '' 
             })
         }
     });
@@ -76,7 +80,8 @@ module.exports.displayAdd = function(req,res,next){
 
     res.render('businessContacts/add_edit',{
         title: 'Add new Business Contact',
-        BusinessContact: newBusinessContact
+        BusinessContact: newBusinessContact, 
+        username: req.user ? req.user.username : '' 
 })
 }
 
