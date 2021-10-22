@@ -5,10 +5,22 @@
 
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
+
+let passport = require('passport');
+
 // Controller access
 let businessContactsController = require('../controllers/businessContacts');
-const { startSession } = require('../models/businessContacts');
 
+
+//const { startSession } = require('../models/businessContacts');
+
+function requireAuth(req,res,next){
+    if(!req,isAuthenticated()){
+        return res.redirect('/login');
+    }
+    next();
+}
 
 
 
@@ -16,36 +28,23 @@ const { startSession } = require('../models/businessContacts');
 
 
 /* GET Business contacts page. */
-router.get('/list', businessContactsController.list);
-// router.get('/list', function(req,res,next){BusinessContacts.find(
-//   (err, businessContactsList)=>{
-//     if(err){
-//       return console.error(err);
-//     }else{
-//       console.log(businessContactsList);
-//         // res.render('businessContacts/list', { title: 'Business Contacts',
-//         // BusinessContactsList: businessContactsList });
-      
-//     }
-//   }
-// )});
- 
+router.get('/list', requireAuth, businessContactsController.list);
 
 
 /* GET Business contacts edit page. */
-router.get('/edit/:id', businessContactsController.displayEdit);
+router.get('/edit/:id', requireAuth, businessContactsController.displayEdit);
 
 /* POST Business contacts edit page. */
-router.post('/edit/:id', businessContactsController.processEdit);
+router.post('/edit/:id', requireAuth, businessContactsController.processEdit);
 
 
 /* GET Business contacts add page. */
-router.get('/add', businessContactsController.displayAdd);
+router.get('/add', requireAuth, businessContactsController.displayAdd);
 
 /* POST Business contacts add page. */
-router.post('/add', businessContactsController.processAdd);
+router.post('/add', requireAuth, businessContactsController.processAdd);
 
 /* GET Business contacts add page. */
-router.get('/delete/:id', businessContactsController.performDelete);
+router.get('/delete/:id', requireAuth, businessContactsController.performDelete);
 
 module.exports = router;
