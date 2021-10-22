@@ -5,7 +5,7 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
-let mongoose = require('mongoose');
+
 
 //modules for authentication 
 let session=require('express-session');
@@ -18,9 +18,9 @@ let flash = require('connect-flash');
 
 //Database setup 
 let dbURI = require('./db.js');
-
+let mongoose = require('mongoose');
 //Connect to database
-mongoose.connect(dbURI.URI);
+mongoose.connect(dbURI.URI, {useNewUrlParser: true, useUnifiedTopology: true});
 
 let mongoDB = mongoose.connection;
 
@@ -78,6 +78,9 @@ app.use(passport.session());
 //Create user model instance
 let userModel = require('../models/user.js');
 let User = userModel.User;
+//create a user auth
+passport.use(User.createStrategy());
+
 
 //serialize and deserical the user info 
 passport.serializeUser(User.serializeUser);

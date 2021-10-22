@@ -31,6 +31,7 @@ module.exports.displayContact = (req, res, next) => {
   };
 
 module.exports.displayLogin = (req,res,next) =>{
+    //if user is not logged in
     if(!req.user){
         res.render('auth/login',
         {
@@ -49,7 +50,7 @@ module.exports.processLogin = (req,res,next) => {
     passport.authenticate('local',
     (err,user,info) => {
         if(err){
-            return enxt(err);
+            return next(err);
         }
         if(!user){
             req.flash('loginMessage','Authentication Error');
@@ -65,7 +66,7 @@ module.exports.processLogin = (req,res,next) => {
 }
 
 module.exports.displayLogout = (req,res,next)=>{
-    
+
 }
 
 module.exports

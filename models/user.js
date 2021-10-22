@@ -11,11 +11,11 @@ let mongoose = require('mongoose');
              required: 'username is required'
          },
          //if had password would look like 
-         password:{
-             type: String,
-             default:'',
-             required: 'Password is requried'
-         },
+        //  password:{
+        //      type: String,
+        //      default:'',
+        //      required: 'Password is requried'
+        //  },
          email:{
              type: String,
              default:'',

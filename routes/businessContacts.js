@@ -16,7 +16,7 @@ let businessContactsController = require('../controllers/businessContacts');
 //const { startSession } = require('../models/businessContacts');
 
 function requireAuth(req,res,next){
-    if(!req,isAuthenticated()){
+    if(!req.isAuthenticated()){
         return res.redirect('/login');
     }
     next();
