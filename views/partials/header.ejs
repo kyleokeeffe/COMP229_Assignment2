@@ -21,7 +21,7 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <!-- Brand/logo -->
         <a class="navbar-brand" href="#">
-            <img src="images/logo2.png" alt="logo" style="width:100px;">
+            <img src="/images/logo2.png" alt="logo" style="width:100px;">
         </a>
         
         <!-- Links -->
@@ -74,10 +74,16 @@
               </ul>
             </li>
             
-        <li class="nav-item btn bg-primary">
-          <a class="nav-link" href="/login">Login</a>
-        </li>
+      
       </ul>
+      <% if(typeof userName == 'string' && userName) { %>
+        <li class="navbar-text"><i class="fas fa-lg fa-user"></i> Welcome, <%= userName %></li>
+        <li class="nav-item"><a href="/users/logout" class="nav-link">
+          <i class="fas fa-lg fa-sign-out-alt"></i> Logout</a></li>
+      <% } else { %>
+        <li class="nav-item"><a href="/users/login" class="nav-link">
+          <i class="fas fa-lg fa-sign-in-alt"></i> Login</a></li>
+      <% } %>
         
     </nav>
 <main class="m-2">

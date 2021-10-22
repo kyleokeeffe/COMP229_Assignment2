@@ -7,24 +7,18 @@
 var express = require('express');
 var router = express.Router();
 
+let indexController = require('../controllers/index');
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Home' });
-});
+router.get('/', indexController.displayHome);
 
 /* GET about page. */
-router.get('/about', function(req, res, next) {
-  res.render('index', { title: 'About Me' });
-});
+router.get('/about', indexController.displayAbout);
 
 /* GET projects page. */
-router.get('/projects', function(req, res, next) {
-  res.render('index', { title: 'Projects' });
-});
+router.get('/projects', indexController.displayProjects);
 
 /* GET services page. */
-router.get('/services', function(req, res, next) {
-  res.render('index', { title: 'Services' });
-});
+router.get('/services', indexController.displayServices);
 
 module.exports = router;

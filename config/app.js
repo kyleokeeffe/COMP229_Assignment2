@@ -5,19 +5,20 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
-let mongoose = require('mongoose');
+
 
 //modules for authentication 
 let session=require('express-session');
 let passport=require('passport');
-let passportLocal = require('passport-local');
-let localStrategy = passportLocal.Strategy;
+// let passportLocal = require('passport-local');
+// let localStrategy = passportLocal.Strategy;
 let flash = require('connect-flash');
 
 
 
 //Database setup 
 let dbURI = require('./db.js');
+let mongoose = require('mongoose');
 
 //Connect to database
 mongoose.connect(dbURI.URI);
@@ -34,7 +35,7 @@ mongoDB.once('open', () => {
 let indexRouter = require('../routes/index');
 let contactRouter = require('../routes/contact');
 let businessContactsRouter = require('../routes/businessContacts');
-let loginRouter = require('../routes/login');
+let usersRouter = require('../routes/users');
 
 //Instantiating the Express module
 let app = express();
@@ -76,17 +77,17 @@ app.use(passport.session());
 //Passport user configuration 
 
 //Create user model instance
-let userModel = require('../models/user.js');
-let User = userModel.User;
+// let userModel = require('../models/user.js');
+// let User = userModel.User;
 
-//serialize and deserical the user info 
-passport.serializeUser(User.serializeUser);
-passport.deserializeUser(User.deserializeUser);
+// //serialize and deserical the user info 
+// passport.serializeUser(User.serializeUser);
+// passport.deserializeUser(User.deserializeUser);
 
 //Setting HTTP request handlers
 app.use('/', indexRouter);
 app.use('/contact', contactRouter);
-app.use('/login', loginRouter);
+app.use('/users', usersRouter);
 app.use('/businessContacts', businessContactsRouter);
 
 

@@ -1,6 +1,20 @@
 // Connect the model
-const businessContacts = require('../models/businessContacts');
+// const businessContacts = require('../models/businessContacts');
+
 let BusinessContacts = require('../models/businessContacts');
+
+
+//method copied directly from Week 6 - Authentication example project
+function requireAuth(req, res, next)
+{
+    // check if the user is logged in
+    if(!req.isAuthenticated())
+    {
+        req.session.url = req.originalUrl;
+        return res.redirect('/users/login');
+    }
+    next();
+}
 
 
 module.exports.list = function(req, res, next) {
@@ -11,27 +25,15 @@ module.exports.list = function(req, res, next) {
           }else{
             // console.log("got it");
               res.render('businessContacts/list', { title: 'Business Contacts',
-              BusinessContactsList: businessContactsList });
+              BusinessContactsList: businessContactsList,
+              userName: req.user ? req.user.username : '' });
             
           }
         }
     );
 }
 
-// module.exports.displayAdd = function(req,res,next){
-//     BusinessContacts.create(
-//     (err, businessContactsList)=>{
-//         if(err){
-//           return console.error(err);
-//         }else{
-//           // console.log("got it");
-//             res.render('businessContacts/add_edit', { title: 'Add Business Contact',
-//             BusinessContactsList: businessContactsList });
-          
-//         }
-//       }
-//     );
-// }
+
 
 module.exports.displayEdit = function(req,res,next){
     let id = req.params.id;
@@ -43,7 +45,8 @@ module.exports.displayEdit = function(req,res,next){
         }else{
             res.render('businessContacts/add_edit', {
                 title: "Edit Business Contact",
-                BusinessContact: businessContactToEdit
+                BusinessContact: businessContactToEdit,
+                userName: req.user ? req.user.username : ''
             })
         }
     });
@@ -76,7 +79,8 @@ module.exports.displayAdd = function(req,res,next){
 
     res.render('businessContacts/add_edit',{
         title: 'Add new Business Contact',
-        BusinessContact: newBusinessContact
+        BusinessContact: newBusinessContact,
+        userName: req.user ? req.user.username : ''
 })
 }
 

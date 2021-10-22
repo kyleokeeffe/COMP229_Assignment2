@@ -10,4 +10,3 @@ if(getTitle == "Business Contacts" || getTitle == "Edit Business Contact"){
         });
     }
 }
-document.getElementById("deleteButtonContainer").classList()[0]="d-block";
