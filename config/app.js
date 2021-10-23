@@ -5,6 +5,9 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+let compress = require('compression');
+let bodyParser = require('body-parser');
+let methodOverride = require('method-override');
 
 
 //modules for authentication 
@@ -21,7 +24,7 @@ let dbURI = require('./db.js');
 let mongoose = require('mongoose');
 
 //Connect to database
-mongoose.connect(dbURI.URI);
+mongoose.connect(dbURI.Atlas);
 
 let mongoDB = mongoose.connection;
 
