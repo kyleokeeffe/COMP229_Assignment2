@@ -79,9 +79,7 @@ app.use(passport.session());
 let userModel = require('../models/user.js');
 let User = userModel.User;
 
-//serialize and deserical the user info 
-// passport.serializeUser(User.serializeUser);
-// passport.deserializeUser(User.deserializeUser);
+
 
 //Setting HTTP request handlers
 app.use('/', indexRouter);
