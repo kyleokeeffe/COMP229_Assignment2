@@ -1,8 +1,7 @@
 let mongoose = require('mongoose');
-let crypto = require('crypto');
 let Schema = mongoose.Schema;
 
-let UserSchema = mongoose.Schema(
+let userSchema = mongoose.Schema(
     {
         firstName: String,
         lastName: String,
@@ -86,11 +85,6 @@ UserSchema.statics.findUniqueUsername = function(username, suffix,
         }
     });
 };
-
-UserSchema.set('toJSON', {
-    getters: true,
-    virtuals: true
-});
 
 
 module.exports = mongoose.model('User', UserSchema);

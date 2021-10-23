@@ -11,7 +11,8 @@ module.exports.list = function(req, res, next) {
           }else{
             // console.log("got it");
               res.render('businessContacts/list', { title: 'Business Contacts',
-              BusinessContactsList: businessContactsList });
+              BusinessContactsList: businessContactsList,
+              userName: req.user ? req.user.username : '' });
             
           }
         }
@@ -43,7 +44,8 @@ module.exports.displayEdit = function(req,res,next){
         }else{
             res.render('businessContacts/add_edit', {
                 title: "Edit Business Contact",
-                BusinessContact: businessContactToEdit
+                BusinessContact: businessContactToEdit,
+                userName: req.user ? req.user.username : ''
             })
         }
     });
@@ -76,7 +78,8 @@ module.exports.displayAdd = function(req,res,next){
 
     res.render('businessContacts/add_edit',{
         title: 'Add new Business Contact',
-        BusinessContact: newBusinessContact
+        BusinessContact: newBusinessContact,
+        userName: req.user ? req.user.username : ''
 })
 }
 

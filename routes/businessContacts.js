@@ -9,14 +9,24 @@ var router = express.Router();
 let businessContactsController = require('../controllers/businessContacts');
 const { startSession } = require('../models/businessContacts');
 
-
+// helper function for guard purposes
+function requireAuth(req, res, next)
+{
+    // check if the user is logged in
+    if(!req.isAuthenticated())
+    {
+        req.session.url = req.originalUrl;
+        return res.redirect('/user/signin');
+    }
+    next();
+}
 
 
 
 
 
 /* GET Business contacts page. */
-router.get('/list', businessContactsController.list);
+router.get('/list', requireAuth,businessContactsController.list);
 // router.get('/list', function(req,res,next){BusinessContacts.find(
 //   (err, businessContactsList)=>{
 //     if(err){
@@ -33,19 +43,19 @@ router.get('/list', businessContactsController.list);
 
 
 /* GET Business contacts edit page. */
-router.get('/edit/:id', businessContactsController.displayEdit);
+router.get('/edit/:id', requireAuth,businessContactsController.displayEdit);
 
 /* POST Business contacts edit page. */
-router.post('/edit/:id', businessContactsController.processEdit);
+router.post('/edit/:id', requireAuth,businessContactsController.processEdit);
 
 
 /* GET Business contacts add page. */
-router.get('/add', businessContactsController.displayAdd);
+router.get('/add', requireAuth,businessContactsController.displayAdd);
 
 /* POST Business contacts add page. */
-router.post('/add', businessContactsController.processAdd);
+router.post('/add', requireAuth,businessContactsController.processAdd);
 
 /* GET Business contacts add page. */
-router.get('/delete/:id', businessContactsController.performDelete);
+router.get('/delete/:id', requireAuth,businessContactsController.performDelete);
 
 module.exports = router;

@@ -20,7 +20,7 @@ let flash = require('connect-flash');
 let dbURI = require('./db.js');
 
 //Connect to database
-mongoose.connect(dbURI.URI);
+mongoose.connect(dbURI.Atlas);
 
 let mongoDB = mongoose.connection;
 
@@ -32,9 +32,9 @@ mongoDB.once('open', () => {
 
 //Local Modules
 let indexRouter = require('../routes/index');
-let contactRouter = require('../routes/contact');
+// let contactRouter = require('../routes/contact');
 let businessContactsRouter = require('../routes/businessContacts');
-let loginRouter = require('../routes/login');
+let userRouter = require('../routes/user');
 
 //Instantiating the Express module
 let app = express();
@@ -80,13 +80,13 @@ let userModel = require('../models/user.js');
 let User = userModel.User;
 
 //serialize and deserical the user info 
-passport.serializeUser(User.serializeUser);
-passport.deserializeUser(User.deserializeUser);
+// passport.serializeUser(User.serializeUser);
+// passport.deserializeUser(User.deserializeUser);
 
 //Setting HTTP request handlers
 app.use('/', indexRouter);
-app.use('/contact', contactRouter);
-app.use('/login', loginRouter);
+// app.use('/contact', contactRouter);
+app.use('/user', userRouter);
 app.use('/businessContacts', businessContactsRouter);
 
 
