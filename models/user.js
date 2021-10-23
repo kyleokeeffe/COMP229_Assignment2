@@ -53,12 +53,8 @@ let Schema = mongoose.Schema;
 
 let UserSchema = mongoose.Schema(
     {
-        firstName: String,
-        lastName: String,
-        email: {
-            type: String,
-            match: [/.+\@.+\..+/, "Please fill a valid e-mail address"]
-        },
+      
+  
         username: {
             type: String,
             unique: true,
@@ -70,6 +66,10 @@ let UserSchema = mongoose.Schema(
             validate: [(password) => {
                 return password && password.length > 6;
             }, 'Password should be longer']
+        },      
+        email: {
+            type: String,
+            match: [/.+\@.+\..+/, "Please fill a valid e-mail address"]
         },
         salt: {
             type: String
@@ -86,19 +86,28 @@ let UserSchema = mongoose.Schema(
         }
     },
     {
-        collection: "user"
+        collection: "users"
     }
 );
 
-UserSchema.virtual('fullName')
-.get(function() {
-    return this.firstName + ' ' + this.lastName;
-})
-.set(function(fullName) {
-    let splitName = fullName.split(' ');
-    this.firstName = splitName[0] || '';
-    this.lastName = splitName[1] || '';
-});
+// UserSchema.virtual('fullName')
+// .get(function() {
+//     return this.firstName + ' ' + this.lastName;
+// })
+// .set(function(fullName) {
+//     let splitName = fullName.split(' ');
+//     this.firstName = splitName[0] || '';
+//     this.lastName = splitName[1] || '';
+// });
+
+// UserSchema.pre('save', function(next) {
+//     if (this.password) {
+//         // this.salt = Buffer.from(crypto.randomBytes(16).toString('base64'), 'base64');
+//         this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
+//         this.password = this.hashPassword(this.password);
+//     }
+//     next();
+// });
 
 UserSchema.pre('save', function(next) {
     if (this.password) {
@@ -108,6 +117,9 @@ UserSchema.pre('save', function(next) {
     next();
 });
 
+// UserSchema.methods.hashPassword = function(password) {
+//     return crypto.pbkdf2Sync(password, this.salt, 10000, 64).toString('base64');
+// };
 UserSchema.methods.hashPassword = function(password) {
     return crypto.pbkdf2Sync(password, this.salt, 10000, 64, 'sha512').toString('base64');
 };

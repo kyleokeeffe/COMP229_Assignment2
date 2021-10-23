@@ -26,7 +26,7 @@ function requireAuth(req, res, next)
 
 
 /* GET Business contacts page. */
-router.get('/list', requireAuth, businessContactsController.list);
+router.get('/list', businessContactsController.list);
 
 
 

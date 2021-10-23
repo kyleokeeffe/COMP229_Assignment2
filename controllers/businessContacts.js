@@ -4,17 +4,6 @@
 let BusinessContacts = require('../models/businessContacts');
 
 
-//method copied directly from Week 6 - Authentication example project
-function requireAuth(req, res, next)
-{
-    // check if the user is logged in
-    if(!req.isAuthenticated())
-    {
-        req.session.url = req.originalUrl;
-        return res.redirect('/users/login');
-    }
-    next();
-}
 
 
 module.exports.list = function(req, res, next) {
