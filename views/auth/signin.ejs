@@ -1,47 +1,45 @@
-<!-- 
-    Filename:     contact.ejs 
-    Student name: Kyle O'Keeffe
-    StudentID:    301156790
-    Date:         Oct. 2, 2021 
-  -->
+<!--
+Filename:     views/auth/signin.ejs
+Student name: Kyle O'Keeffe
+StudentID:    301156790
+Date:         Oct. 23, 2021  
+-->
 
-  <% include ../partials/header.ejs %>
+<% include ../partials/header.ejs %>
 
-  <h1><%= title %></h1>
-    <% for(var i in messages) { %>
-    <div class="flash text-center bg-warning w-60"><%= messages[i] %></div>
-    <% } %>
-  <div class="container">
- 
- 
-      <div class="text-center d-sm-flex flex-sm-row justify-content-center">
-        <!-- Login form -->
-        <form class="form-signin" action="/user/signin" method="POST" autocomplete="off">
-            <img class="mb-4" src="/images/logo2.png" width="100">
-            <h1 class = "h3 mb-3 font-weight-normal">Please enter Login Information</h1>
-            
-            <label for="username" class="sr-only">Username</label>
-            <input type="text" 
-              name="username"
-              id="username" 
-              class="form-control" 
-              placeholder="Enter Username" 
-              required 
-              autofocus>
-            <label for="password" class="sr-only">Password</label>
-            <input type="password" 
-              name="password"
-              id="password" 
-              class="form-control" 
-              placeholder="Enter Password" 
-              required>
-            <input type="submit" class="btn btn-md btn-primary btn-block" value="Sign In">
-            <a class="btn btn-md btn-success btn-block" href="signup">Register</a>
-            <!-- <a class="" href="signup">Register</a> -->
-        </form>
+<h1><%= title %></h1>
+<!-- Display area for error messages -->
+  <% for(var i in messages) { %>
+  <div class="flash text-center bg-warning w-60"><%= messages[i] %></div>
+  <% } %>
+<div class="container">
+    <div class="text-center d-sm-flex flex-sm-row justify-content-center">
+      <!-- Login form -->
+      <form class="form-signin" action="/user/signin" method="POST" autocomplete="off">
+          <img class="mb-4" src="/images/logo2.png" width="100">
+          <h1 class = "h3 mb-3 font-weight-normal">Please enter Login Information</h1>
 
-      </div>
-  
-        
-  </div>
-  <% include ../partials/footer.ejs %>
+          <!-- Form inputs -->
+          <label for="username" class="sr-only">Username</label>
+          <input type="text" 
+            name="username"
+            id="username" 
+            class="form-control" 
+            placeholder="Enter Username" 
+            required 
+            autofocus>
+
+          <label for="password" class="sr-only">Password</label>
+          <input type="password" 
+            name="password"
+            id="password" 
+            class="form-control" 
+            placeholder="Enter Password" 
+            required>
+        <!-- Input Buttons -->
+          <input type="submit" class="btn btn-md btn-primary btn-block" value="Sign In">
+          <a class="btn btn-md btn-success btn-block" href="signup">Register</a>
+      </form>
+    </div>
+</div>
+<% include ../partials/footer.ejs %>

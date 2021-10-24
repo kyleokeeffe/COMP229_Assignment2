@@ -1,39 +1,28 @@
-// Connect the model
-const businessContacts = require('../models/businessContacts');
+// Filename:     controllers/businessContacts.js
+// Student name: Kyle O'Keeffe
+// StudentID:    301156790
+// Date:         Oct. 23, 2021 
+
+
+// Import database model for businessContacts collection
 let BusinessContacts = require('../models/businessContacts');
 
-
+//Export function for listing all contents of businessContacts database collection
 module.exports.list = function(req, res, next) {
     BusinessContacts.find(
         (err, businessContactsList)=>{
           if(err){
             return console.error(err);
           }else{
-            // console.log("got it");
               res.render('businessContacts/list', { title: 'Business Contacts',
               BusinessContactsList: businessContactsList,
               userName: req.user ? req.user.username : '' });
-            
           }
         }
     );
 }
 
-// module.exports.displayAdd = function(req,res,next){
-//     BusinessContacts.create(
-//     (err, businessContactsList)=>{
-//         if(err){
-//           return console.error(err);
-//         }else{
-//           // console.log("got it");
-//             res.render('businessContacts/add_edit', { title: 'Add Business Contact',
-//             BusinessContactsList: businessContactsList });
-          
-//         }
-//       }
-//     );
-// }
-
+//Export function for rendering edit businessContact add_edit form view
 module.exports.displayEdit = function(req,res,next){
     let id = req.params.id;
 
@@ -51,9 +40,9 @@ module.exports.displayEdit = function(req,res,next){
     });
 }
 
+//Export function for posting edit businessContact add_edit form
 module.exports.processEdit = function(req,res,next){
     let id = req.params.id;
-
     let updatedBusinessContact = BusinessContacts({
         _id:req.body.id,
         name: req.body.name,
@@ -61,7 +50,6 @@ module.exports.processEdit = function(req,res,next){
         email: req.body.email
 
     });
-
     BusinessContacts.updateOne({_id: id}, updatedBusinessContact, (err) => {
         if(err){
             console.log(err);
@@ -70,9 +58,9 @@ module.exports.processEdit = function(req,res,next){
             res.redirect('/businessContacts/list');
         }
     });
-
 }
 
+//Export function for rendering add businessContact add_edit form view
 module.exports.displayAdd = function(req,res,next){
     let newBusinessContact = BusinessContacts();
 
@@ -83,17 +71,14 @@ module.exports.displayAdd = function(req,res,next){
 })
 }
 
+//Export function for posting edit businessContact add_edit form
 module.exports.processAdd = function(req,res,next){
     let newBusinessContact = BusinessContacts({
-
-  
         _id:req.body.id,
         name: req.body.name,
         telephone: req.body.telephone,
         email: req.body.email
-
     });
-
     BusinessContacts.create(newBusinessContact, (err, createdContact) => {
         if(err){
             console.log(err);
@@ -103,10 +88,9 @@ module.exports.processAdd = function(req,res,next){
             res.redirect('/businessContacts/list');
         }
     });
-
 }
 
-
+//Export function for removing a single businessContact collection entry
 module.exports.performDelete = (req, res, next) => {
     let id = req.params.id;
 

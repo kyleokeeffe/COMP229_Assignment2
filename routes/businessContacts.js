@@ -1,53 +1,37 @@
-// Filename:     index.js 
+// Filename:     routes/businessContacts.js
 // Student name: Kyle O'Keeffe
 // StudentID:    301156790
-// Date:         Oct. 2, 2021 
+// Date:         Oct. 23, 2021 
 
+//Import external module
 var express = require('express');
+
+//configure router
 var router = express.Router();
+
 // Controller access
 let businessContactsController = require('../controllers/businessContacts');
 const { startSession } = require('../models/businessContacts');
 
-// helper function for guard purposes
+//Function for limiting access to routes if user is not authenticated
 function requireAuth(req, res, next)
 {
-    // check if the user is logged in
-    if(!req.isAuthenticated())
+    if(!req.isAuthenticated())// check if the user is logged in
     {
         req.session.url = req.originalUrl;
-        return res.redirect('/user/signin');
+        return res.redirect('/user/signin');//if not, redirect to signin page
     }
     next();
 }
 
-
-
-
-
 /* GET Business contacts page. */
 router.get('/list', requireAuth,businessContactsController.list);
-// router.get('/list', function(req,res,next){BusinessContacts.find(
-//   (err, businessContactsList)=>{
-//     if(err){
-//       return console.error(err);
-//     }else{
-//       console.log(businessContactsList);
-//         // res.render('businessContacts/list', { title: 'Business Contacts',
-//         // BusinessContactsList: businessContactsList });
-      
-//     }
-//   }
-// )});
- 
-
 
 /* GET Business contacts edit page. */
 router.get('/edit/:id', requireAuth,businessContactsController.displayEdit);
 
 /* POST Business contacts edit page. */
 router.post('/edit/:id', requireAuth,businessContactsController.processEdit);
-
 
 /* GET Business contacts add page. */
 router.get('/add', requireAuth,businessContactsController.displayAdd);

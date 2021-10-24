@@ -1,10 +1,12 @@
-// Filename:     index.js 
+// Filename:     routes/index.js
 // Student name: Kyle O'Keeffe
 // StudentID:    301156790
-// Date:         Oct. 2, 2021 
+// Date:         Oct. 23, 2021 
 
-
+//import external module
 var express = require('express');
+
+//configure router
 var router = express.Router();
 
 /* GET home page. */
@@ -36,6 +38,5 @@ router.get('/contact', function(req, res, next) {
   res.render('contact', { title: 'Contact',
   userName: req.user ? req.user.username : '' });
 });
-
 
 module.exports = router;

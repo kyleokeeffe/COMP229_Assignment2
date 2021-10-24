@@ -1,7 +1,16 @@
+// Filename:     models/user.js
+// Student name: Kyle O'Keeffe
+// StudentID:    301156790
+// Date:         Oct. 23, 2021 
+
+//Import modules
 let mongoose = require('mongoose');
 let crypto = require('crypto');
+
+//Configure Schema
 let Schema = mongoose.Schema;
 
+//Define schema for user collection
 let UserSchema = mongoose.Schema(
     {
         firstName: String,
@@ -41,6 +50,7 @@ let UserSchema = mongoose.Schema(
     }
 );
 
+//Define function for creating virtual fullName attribute from fName and lName user attributes
 UserSchema.virtual('fullName')
 .get(function() {
     return this.firstName + ' ' + this.lastName;
@@ -51,6 +61,7 @@ UserSchema.virtual('fullName')
     this.lastName = splitName[1] || '';
 });
 
+//Generate salt value for use in hashPassword function, call hashPassword and assign to password 
 UserSchema.pre('save', function(next) {
     if (this.password) {
         this.salt = Buffer.from(crypto.randomBytes(16).toString('base64'), 'base64');
@@ -59,15 +70,17 @@ UserSchema.pre('save', function(next) {
     next();
 });
 
+//Encrypt password using generated salt value
 UserSchema.methods.hashPassword = function(password) {
     return crypto.pbkdf2Sync(password, this.salt, 10000, 64, 'sha512').toString('base64');
 };
 
-
+//Compare saved encrypted password with inputted encrypted password
 UserSchema.methods.authenticate = function(password) {
     return this.password === this.hashPassword(password);
 };
 
+//Determine if inputted username is unique in user collection
 UserSchema.statics.findUniqueUsername = function(username, suffix,
     callback) {
     var possibleUsername = username + (suffix || '');
@@ -87,10 +100,10 @@ UserSchema.statics.findUniqueUsername = function(username, suffix,
     });
 };
 
+//Serialize schema to json
 UserSchema.set('toJSON', {
     getters: true,
     virtuals: true
 });
-
 
 module.exports = mongoose.model('User', UserSchema);
