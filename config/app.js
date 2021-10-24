@@ -42,11 +42,6 @@
   let businessContactsRouter = require('../routes/businessContacts');
   let userRouter = require('../routes/user');
 
-  //Setting HTTP request handlers
-  app.use('/', indexRouter);
-  app.use('/user', userRouter);
-  app.use('/businessContacts', businessContactsRouter);
-
 //Configuring Express
   //Instantiating the Express module
   let app = express();
@@ -85,6 +80,12 @@
   let userModel = require('../models/user.js');
   //Instantiate user model
   let User = userModel.User;
+
+//Configuring Http request Handlers  
+  //Setting HTTP request handlers
+  app.use('/', indexRouter);
+  app.use('/user', userRouter);
+  app.use('/businessContacts', businessContactsRouter);
 
 // Error Handling
   //Predefined callback function in case of error 
