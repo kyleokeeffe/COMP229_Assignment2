@@ -94,11 +94,11 @@ module.exports.processAdd = function(req,res,next){
 module.exports.performDelete = (req, res, next) => {
     let id = req.params.id;
 
-    businessContacts.remove({_id: id}, (err) => {
+    BusinessContacts.remove({_id: id}, (err) => {
         if(err){
 
         }else{
             res.redirect('/businessContacts/list');
         }
-    })
+    });
 }
