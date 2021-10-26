@@ -6,26 +6,26 @@ Date:         Oct. 23, 2021
 -->
 
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
-  
-    <link rel="stylesheet" href="/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel='stylesheet' href="/@fortawesome/fontawesome-free/css/all.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
   </head>
   <body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">
-            <img src="/images/logo2.png" alt="logo" style="width:100px;">
-          </a>
-        </div>
-        <ul class="nav navbar-nav float-*-left">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mainNav">
+      <a class="navbar-brand" href="/">
+        <img src="/images/logo2.png" alt="logo" style="width:100px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <% if(title == 'Home'){ %>
               <a class="nav-link active" href="/">Home</a>
@@ -62,33 +62,25 @@ Date:         Oct. 23, 2021
             <% } %>
           </li>
           <li class="nav-item dropdown">
-            <% if (title == 'Business Contacts List' || title == "Add a new Business Contact") { %>
-              <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Business Contacts</a>
+            <% if (title == 'Business Contacts' || title == 'Add new Business Contact' || title == 'Edit Business Contact') { %>
+              <a class="nav-link active dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Business Contacts</a>
             <% } else { %>
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Business Contacts</a>
-            <% } %>       
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Business Contacts</a>
+              <% } %>       
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="/businessContacts/list">Business Contacts List</a></li>
               <li><a class="dropdown-item" href="/businessContacts/add">Add a new Business Contact</a></li>
             </ul>
           </li>
         </ul>
-                                
-        <ul class="nav navbar-nav navbar-right">
           <% if (typeof userName == 'string' && userName) { %>
-            <li class="nav-item d-flex align-items-center text-light">
-              <div>Hi, <%= userName %>! &nbsp;</div>
-            </li>
-            
-            <li class="nav-item btn bg-primary">
-              <a class="nav-link" href="/user/signout" onclick="return confirm('Are you sure?')">Sign Out (<%= userName %>)</a>
+            <span class="text-light">Hi, <%= userName %>! &nbsp;</span>
+            <a href="/user/signout">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="button">Signout</button>
           <% } else { %>
-            <li class="nav-item btn bg-primary">
-              <a class="nav-link" href="/user/signin">Signin</a>
+            <a href="/user/signin">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="button">Signin</button>
           <% } %>    
-                                          
-            </li>
-        </ul>
+          </a>
       </div>
     </nav>
-  <main class="m-2">                          

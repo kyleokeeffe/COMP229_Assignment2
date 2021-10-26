@@ -89,10 +89,11 @@ module.exports.signup = function(req, res, next) {
           user: user
         });
       }
-      req.login(user, (err) => {
-        if (err) return next(err);
-        return res.redirect('/');
-      });
+      return res.redirect('/');
+      // req.login(user, (err) => {
+      //   if (err) return next(err);
+      //   return res.redirect('/');
+      // });
     });
   } else {
     return res.redirect('/');
