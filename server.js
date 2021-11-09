@@ -15,7 +15,9 @@ var app = require('./config/app.js');
 var debug = require('debug')('comp229-007-okeeffekyle-assignment01:server');
 var http = require('http');
 const configurePassport = require('./config/passport');
+//const expressValidator = require('express-validator');
 
+//app.use(expressValidator());
 /**
  * Get port from environment and store in Express.
  */

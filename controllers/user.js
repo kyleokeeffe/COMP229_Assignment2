@@ -10,6 +10,8 @@ let passport = require('passport');
 //Import user model
 let User = require('../models/user');
 
+
+
 //Function for converting error codes to string message
 function getErrorMessage(err) {
   console.log("===> Error: " + err);
@@ -99,6 +101,7 @@ module.exports.signup = function(req, res, next) {
     return res.redirect('/');
   }
 };
+
 //Export function for posting Signin form
 module.exports.signin = function(req, res, next){
   passport.authenticate('local', {   
