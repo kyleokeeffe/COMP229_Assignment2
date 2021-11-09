@@ -31,13 +31,13 @@ router.get('/list', requireAuth,businessContactsController.list);
 router.get('/edit/:id', requireAuth,businessContactsController.displayEdit);
 
 /* POST Business contacts edit page. */
-router.post('/edit/:id', requireAuth,businessContactsController.processEdit);
+router.post('/edit/:id',     requireAuth,businessContactsController.validate('processEdit'),businessContactsController.processEdit);
 
 /* GET Business contacts add page. */
 router.get('/add', requireAuth,businessContactsController.displayAdd);
 
 /* POST Business contacts add page. */
-router.post('/add', requireAuth,businessContactsController.processAdd);
+router.post('/add', requireAuth,businessContactsController.validate('processEdit'),businessContactsController.processAdd);
 
 /* GET Business contacts add page. */
 router.get('/delete/:id', requireAuth,businessContactsController.performDelete);

@@ -17,7 +17,7 @@ router.get('/', usersController.listUsers);
 /* GET signup page. */
 router.get('/signup', usersController.renderSignup);
 /* POST signup page. */
-router.post('/signup', usersController.signup);
+router.post('/signup',usersController.validate('processRegister'),usersController.signup);
 
 /* GET signin page. */
 router.get('/signin', usersController.renderSignin);

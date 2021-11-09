@@ -11,6 +11,7 @@
   let cookieParser = require('cookie-parser');
   let logger = require('morgan');
   let mongoose = require('mongoose');
+  //let expressValidator = require('express-validator');
 
   //External modules for authentication 
   let session=require('express-session');
@@ -55,6 +56,7 @@
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
+  //app.use(expressValidator());
 
   //Setting static folders
   app.use(express.static(path.join(__dirname, '../public')));
