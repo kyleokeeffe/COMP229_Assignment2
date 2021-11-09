@@ -7,6 +7,28 @@
 // Import database model for businessContacts collection
 let BusinessContacts = require('../models/businessContacts');
 
+function getErrorMessage(err) {
+    console.log("===> Error: " + err);
+    let message = '';
+  
+    if (err.code) {
+      switch (err.code) {
+        case 11000:
+        case 11001:
+          message = 'Username already exists';
+          break;
+        default:
+          message = 'Something went wrong';
+      }
+    } else {
+      for (var errName in err.errors) {
+        if (err.errors[errName].message) message = err.errors[errName].message;
+      }
+    }
+    return message;
+  };
+
+
 //Export function for listing all contents of businessContacts database collection
 module.exports.list = function(req, res, next) {
     BusinessContacts.find(
