@@ -10,29 +10,7 @@ let passport = require('passport');
 //Import user model
 let User = require('../models/user');
 
-//Import express-validator check function for middleware and business logic
-const {body} = require('express-validator');
-const {validationResult} = require('express-validator');
 
-//Create middleware function for validation
-module.exports.validate = (method) => {//may need to remove 'module.'
-    switch (method) {
-        case 'processRegister': {
-            return [
-                  body('firstName', 'Please enter a valid first name using only letter characters').exists().isString(),
-                  body('lastName', 'Please enter a valid last name').exists().isString(),
-                  body('email', 'Please enter a valid email').exists().isEmail(),
-                  body('username', 'Please enter a valid username').exists(),
-                  body('password', 'Please enter a valid password').exists()
-                
-            ]
-              
-        }
-
-
-
-    }
-}
 
 //Function for converting error codes to string message
 function getErrorMessage(err) {
@@ -95,34 +73,32 @@ module.exports.renderSignin = function(req, res, next) {
 
 //Export function for posting Signup form
 module.exports.signup = function(req, res, next) {
-    if (!req.user && req.body.password === req.body.password_confirm) {
-      console.log(req.body);
-  
-      let user = new User(req.body);
-      user.provider = 'local';
-      console.log(user);
-  
-      user.save((err) => {
-        if (err) {
-          try{
-            const errors = validationResult(req);
-            if (!errors.isEmpty()) {
-                  req.flash('error',errors.array());
-                  return res.render('auth/signup',{
-                      title: 'Sign-up form',
-                      messages: req.flash('error'),
-                      user:user
-                  });
-            }
-          }
-          catch(err){
-            return next(err);
-          }
-        return res.redirect('/');
-      } else {
+  if (!req.user && req.body.password === req.body.password_confirm) {
+    console.log(req.body);
+
+    let user = new User(req.body);
+    user.provider = 'local';
+    console.log(user);
+
+    user.save((err) => {
+      if (err) {
+        let message = getErrorMessage(err);
+
+        req.flash('error', message);
+        return res.render('auth/signup', {
+          title: 'Sign-up Form',
+          messages: req.flash('error'),
+          user: user
+        });
+      }
       return res.redirect('/');
-    }
-  });
+      // req.login(user, (err) => {
+      //   if (err) return next(err);
+      //   return res.redirect('/');
+      // });
+    });
+  } else {
+    return res.redirect('/');
   }
 };
 
